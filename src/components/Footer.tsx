@@ -27,13 +27,15 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-gray-900 mb-3 text-sm">Company</h4>
             <ul className="space-y-2">
-              <li><span className="text-sm text-gray-500">A Deep End Ventures startup</span></li>
+              <li><a href="https://deep-end-ventures.vercel.app" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-gray-700">A Deep End Ventures company</a></li>
               <li><a href="mailto:hello@waitlistq.com" className="text-sm text-gray-500 hover:text-gray-700">Contact</a></li>
             </ul>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-xs text-gray-400">
-          © {new Date().getFullYear()} WaitlistQ. All rights reserved.
+          © {new Date().getFullYear()} WaitlistQ. A{' '}
+          <a href="https://deep-end-ventures.vercel.app" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-700">Deep End Ventures</a>{' '}
+          company. All rights reserved.
         </div>
       </div>
     </footer>
