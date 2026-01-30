@@ -23,9 +23,28 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">Q</span>
-            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none" className="h-8 w-8">
+              <defs>
+                <linearGradient id="wq-nav" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0%" stopColor="#7c3aed"/>
+                  <stop offset="100%" stopColor="#8b5cf6"/>
+                </linearGradient>
+                <linearGradient id="wq-nav-tail" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#7c3aed"/>
+                  <stop offset="100%" stopColor="#a78bfa"/>
+                </linearGradient>
+              </defs>
+              <circle cx="112" cy="118" r="72" fill="url(#wq-nav)"/>
+              <circle cx="112" cy="118" r="42" fill="#ffffff"/>
+              <path d="M148 152 L200 50 L185 95 L210 82 L165 170 Z" fill="url(#wq-nav-tail)"/>
+              <line x1="140" y1="175" x2="120" y2="210" stroke="#7c3aed" strokeWidth="4" strokeLinecap="round" opacity="0.6"/>
+              <line x1="155" y1="178" x2="145" y2="205" stroke="#8b5cf6" strokeWidth="3" strokeLinecap="round" opacity="0.4"/>
+              <line x1="168" y1="175" x2="165" y2="198" stroke="#a78bfa" strokeWidth="2.5" strokeLinecap="round" opacity="0.3"/>
+              <circle cx="82" cy="85" r="6" fill="#7c3aed" opacity="0.5"/>
+              <circle cx="72" cy="115" r="6" fill="#7c3aed" opacity="0.6"/>
+              <circle cx="80" cy="148" r="6" fill="#7c3aed" opacity="0.7"/>
+              <circle cx="108" cy="162" r="6" fill="#7c3aed" opacity="0.8"/>
+            </svg>
             <span className="font-bold text-xl text-gray-900">WaitlistQ</span>
           </Link>
 
