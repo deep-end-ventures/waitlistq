@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+  <!-- WaitlistQ: Stylized Q with rocket tail / upward energy -->
+  <defs>
+    <linearGradient id="wq-grad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="wq-tail" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <!-- Q circle (thick ring) -->
+  <circle cx="112" cy="118" r="72" fill="url(#wq-grad)"/>
+  <circle cx="112" cy="118" r="42" fill="#ffffff"/>
+  <!-- Q tail as rocket/arrow pointing up-right -->
+  <path d="M148 152 L200 50 L185 95 L210 82 L165 170 Z" fill="url(#wq-tail)"/>
+  <!-- Rocket exhaust lines (energy/speed) -->
+  <line x1="140" y1="175" x2="120" y2="210" stroke="#7c3aed" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  <line x1="155" y1="178" x2="145" y2="205" stroke="#8b5cf6" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+  <line x1="168" y1="175" x2="165" y2="198" stroke="#a78bfa" stroke-width="2.5" stroke-linecap="round" opacity="0.3"/>
+  <!-- Small people dots in the ring (queue) -->
+  <circle cx="82" cy="85" r="6" fill="#7c3aed" opacity="0.5"/>
+  <circle cx="72" cy="115" r="6" fill="#7c3aed" opacity="0.6"/>
+  <circle cx="80" cy="148" r="6" fill="#7c3aed" opacity="0.7"/>
+  <circle cx="108" cy="162" r="6" fill="#7c3aed" opacity="0.8"/>
+</svg>
