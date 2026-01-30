@@ -11,6 +11,12 @@ export const metadata: Metadata = {
       "Create embeddable waitlists with built-in referral tracking. Users share to move up the list.",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "WaitlistQ — Viral Waitlists with Referral Tracking",
+    description:
+      "Create embeddable waitlists with built-in referral tracking. Users share to move up the list.",
+  },
 };
 
 export default function RootLayout({
