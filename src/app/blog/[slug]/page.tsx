@@ -6,6 +6,7 @@ import { BlogPostJsonLd } from "@/components/JsonLd";
 import { ArrowLeft, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import EmailCapture from "@/components/EmailCapture";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -118,6 +119,15 @@ export default async function BlogPostPage({
           </div>
         </div>
       </article>
+
+      {/* Email Capture — inline after article */}
+      <div className="max-w-3xl mx-auto px-4 mt-8 mb-12">
+        <EmailCapture
+          variant="inline"
+          heading="Enjoyed this post? Get more launch tips →"
+          source="blog-post"
+        />
+      </div>
 
       {/* CTA */}
       <section className="py-16 bg-gradient-to-r from-indigo-600 to-purple-600">

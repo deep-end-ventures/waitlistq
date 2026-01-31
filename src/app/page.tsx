@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import EmailCapture from '@/components/EmailCapture';
 import Link from 'next/link';
 
 const features = [
@@ -247,6 +248,17 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Email Capture */}
+      <section className="py-16 bg-white">
+        <div className="max-w-xl mx-auto px-4">
+          <EmailCapture
+            heading="Get Pre-Launch Growth Tips"
+            subheading="Viral waitlist strategies, referral program playbooks, and WaitlistQ product updates. Free, no spam."
+            source="homepage"
+          />
         </div>
       </section>
 

@@ -4,6 +4,7 @@ import { blogPosts } from "@/content/blog";
 import { ArrowRight, Clock, BookOpen } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import EmailCapture from "@/components/EmailCapture";
 
 export const metadata: Metadata = {
   title: "Blog — WaitlistQ | Waitlist Strategy, Launch Marketing & Growth Guides",
@@ -73,6 +74,17 @@ export default function BlogPage() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Email Capture */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-xl mx-auto px-4">
+          <EmailCapture
+            heading="Get Launch Growth Tips in Your Inbox"
+            subheading="Viral waitlist strategies, referral playbooks, and product updates. Free, no spam."
+            source="blog-listing"
+          />
         </div>
       </section>
 
