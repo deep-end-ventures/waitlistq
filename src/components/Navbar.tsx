@@ -49,6 +49,12 @@ export default function Navbar() {
           </Link>
 
           <div className="flex items-center gap-4">
+            <Link
+              href="/blog"
+              className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              Blog
+            </Link>
             {user ? (
               <>
                 <Link
