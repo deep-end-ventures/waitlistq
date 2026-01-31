@@ -331,6 +331,77 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="py-24 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-gray-600">
+              Everything you need to know about viral waitlists
+            </p>
+          </div>
+          <div className="space-y-6">
+            {[
+              {
+                q: "Is WaitlistQ free?",
+                a: "Yes! The free plan includes 1 waitlist with up to 100 signups, basic analytics, an embeddable widget, and CSV export. No credit card required. Upgrade to Pro ($19/mo) for unlimited waitlists, referral tracking, custom branding, and advanced analytics.",
+              },
+              {
+                q: "How does the viral referral system work?",
+                a: "When someone joins your waitlist, they get a unique referral link. Every friend who signs up through that link moves the referrer up the list. This creates a natural incentive loop — people share to get ahead, and your waitlist grows organically without paid ads.",
+              },
+              {
+                q: "Can I embed the waitlist on my own website?",
+                a: "Absolutely. WaitlistQ provides a simple embed code (just one script tag) that works on any website — Next.js, WordPress, Webflow, Squarespace, static HTML, you name it. The widget is fully responsive and customizable to match your brand.",
+              },
+              {
+                q: "What analytics does WaitlistQ provide?",
+                a: "Track signups over time, referral conversion rates, top referrers, daily trends, and traffic sources. The Pro plan unlocks advanced analytics with cohort analysis, referral chains, and weekly digest emails with growth reports.",
+              },
+              {
+                q: "How is WaitlistQ different from Waitlist.me or LaunchList?",
+                a: "WaitlistQ is built specifically for viral pre-launch growth. Our referral engine is native to the product — not a bolt-on. We offer a generous free tier (100 signups), built-in retention tools (weekly digests, milestone notifications, expiry warnings), and crypto-native Pro payments.",
+              },
+              {
+                q: "Can I export my waitlist data?",
+                a: "Yes — export your entire waitlist as CSV anytime, on any plan. You own your data. The export includes names, emails, referral counts, signup dates, and position data. Perfect for importing into your email marketing or CRM tools.",
+              },
+            ].map((faq) => (
+              <div
+                key={faq.q}
+                className="bg-gray-50 rounded-2xl p-6 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 transition-all"
+              >
+                <h3 className="font-bold text-gray-900 mb-2">{faq.q}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  { q: "Is WaitlistQ free?", a: "Yes! The free plan includes 1 waitlist with up to 100 signups, basic analytics, an embeddable widget, and CSV export. No credit card required. Upgrade to Pro ($19/mo) for unlimited waitlists, referral tracking, custom branding, and advanced analytics." },
+                  { q: "How does the viral referral system work?", a: "When someone joins your waitlist, they get a unique referral link. Every friend who signs up through that link moves the referrer up the list. This creates a natural incentive loop — people share to get ahead, and your waitlist grows organically without paid ads." },
+                  { q: "Can I embed the waitlist on my own website?", a: "Absolutely. WaitlistQ provides a simple embed code that works on any website — Next.js, WordPress, Webflow, Squarespace, static HTML, you name it. The widget is fully responsive and customizable." },
+                  { q: "What analytics does WaitlistQ provide?", a: "Track signups over time, referral conversion rates, top referrers, daily trends, and traffic sources. Pro unlocks advanced analytics with cohort analysis, referral chains, and weekly digest emails." },
+                  { q: "How is WaitlistQ different from Waitlist.me or LaunchList?", a: "WaitlistQ is built specifically for viral pre-launch growth. Our referral engine is native to the product — not a bolt-on. We offer a generous free tier (100 signups), built-in retention tools, and crypto-native Pro payments." },
+                  { q: "Can I export my waitlist data?", a: "Yes — export your entire waitlist as CSV anytime, on any plan. You own your data. The export includes names, emails, referral counts, signup dates, and position data." },
+                ].map((faq) => ({
+                  "@type": "Question",
+                  name: faq.q,
+                  acceptedAnswer: { "@type": "Answer", text: faq.a },
+                })),
+              }),
+            }}
+          />
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-24 bg-gradient-to-r from-indigo-600 to-purple-600">
         <div className="max-w-4xl mx-auto px-4 text-center">
