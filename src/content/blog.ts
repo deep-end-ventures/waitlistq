@@ -197,7 +197,7 @@ Free for up to 100 signups. Your product launch starts today.
 
 ---
 
-*WaitlistQ is a viral waitlist platform by [Deep End Ventures](https://deep-end-ventures-site-amber.vercel.app). Build waitlists that grow themselves.*
+*WaitlistQ is a viral waitlist platform by [Deep End Ventures](https://deependventures.com). Build waitlists that grow themselves.*
     `,
   },
   {
@@ -616,7 +616,7 @@ Free for up to 100 signups. Referral tracking included on all plans.
 
 ---
 
-*WaitlistQ provides viral waitlist infrastructure for product launches. Built by [Deep End Ventures](https://deep-end-ventures-site-amber.vercel.app).*
+*WaitlistQ provides viral waitlist infrastructure for product launches. Built by [Deep End Ventures](https://deependventures.com).*
     `,
   },
 ];
