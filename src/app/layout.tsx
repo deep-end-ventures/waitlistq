@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { WebsiteJsonLd } from "@/components/JsonLd";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://waitlistq.vercel.app"),
   title: "WaitlistQ — Viral Waitlists with Referral Tracking",
   description:
     "Create embeddable waitlists with built-in referral tracking. Users share to move up the list. Free to start.",
@@ -45,6 +47,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <WebsiteJsonLd />
+        <link rel="alternate" type="application/rss+xml" title="WaitlistQ Blog" href="/blog/rss.xml" />
+      </head>
       <body className="antialiased bg-white text-gray-900">
         {children}
         <Analytics />

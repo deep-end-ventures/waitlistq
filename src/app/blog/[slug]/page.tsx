@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBlogPost, getAllSlugs } from "@/content/blog";
+import { BlogPostJsonLd } from "@/components/JsonLd";
 import { ArrowLeft, Clock } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -48,6 +49,12 @@ export default async function BlogPostPage({
 
   return (
     <div className="min-h-screen bg-white">
+      <BlogPostJsonLd
+        title={post.title}
+        description={post.description}
+        date={post.date}
+        slug={slug}
+      />
       <Navbar />
 
       {/* Article */}
