@@ -63,6 +63,12 @@ export default function Navbar() {
                 >
                   Dashboard
                 </Link>
+                <Link
+                  href="/pricing"
+                  className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Pricing
+                </Link>
                 <button
                   onClick={handleSignOut}
                   className="text-sm text-gray-500 hover:text-gray-700 transition-colors"
@@ -72,6 +78,12 @@ export default function Navbar() {
               </>
             ) : (
               <>
+                <Link
+                  href="/pricing"
+                  className="hidden sm:block text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  Pricing
+                </Link>
                 <Link
                   href="/login"
                   className="text-sm text-gray-600 hover:text-gray-900 transition-colors"

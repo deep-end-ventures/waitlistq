@@ -3,6 +3,8 @@
 import { useEffect, useState, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import Navbar from '@/components/Navbar';
+import { ProBadge } from '@/components/ProBadge';
+import { isPro } from '@/lib/subscription';
 import { getBaseUrl, formatNumber } from '@/lib/utils';
 
 interface Waitlist {
@@ -124,9 +126,15 @@ export default function DashboardPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+              <ProBadge />
+            </div>
             <p className="text-gray-500 text-sm mt-1">
               Welcome back{user?.email ? `, ${user.email}` : ''}
+              {!isPro() && (
+                <> · <a href="/pricing" className="text-indigo-600 hover:text-indigo-700 font-medium">Upgrade to Pro</a></>
+              )}
             </p>
           </div>
           <button

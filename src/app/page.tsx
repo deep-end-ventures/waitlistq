@@ -41,36 +41,20 @@ const pricingPlans = [
     price: '$0',
     period: 'forever',
     description: 'Perfect for testing the waters',
-    features: ['Up to 100 signups', '1 waitlist', 'Basic analytics', 'Embeddable widget', 'CSV export'],
+    features: ['1 waitlist', 'Up to 100 signups', 'Basic analytics', 'Embeddable widget', 'CSV export', 'Public waitlist page'],
     cta: 'Start Free',
+    href: '/login',
     featured: false,
   },
   {
-    name: 'Starter',
+    name: 'Pro',
     price: '$19',
     period: '/month',
     description: 'For serious launches',
-    features: ['Up to 1,000 signups', '3 waitlists', 'Full analytics', 'Referral tracking', 'Weekly digest emails', 'Priority support'],
-    cta: 'Get Started',
+    features: ['Unlimited waitlists', 'Unlimited signups', 'Referral tracking', 'Custom branding', 'Full API access', 'Advanced analytics', 'Weekly digest emails', 'Priority support'],
+    cta: 'Upgrade to Pro',
+    href: '/pricing',
     featured: true,
-  },
-  {
-    name: 'Growth',
-    price: '$49',
-    period: '/month',
-    description: 'For growth-stage launches',
-    features: ['Up to 10,000 signups', '10 waitlists', 'Advanced analytics', 'A/B test incentives', 'Custom branding', 'API access', 'Webhook integrations'],
-    cta: 'Scale Up',
-    featured: false,
-  },
-  {
-    name: 'Scale',
-    price: '$149',
-    period: '/month',
-    description: 'Unlimited everything',
-    features: ['Unlimited signups', 'Unlimited waitlists', 'White-label widget', 'Custom domain', 'Dedicated support', 'SLA guarantee'],
-    cta: 'Contact Sales',
-    featured: false,
   },
 ];
 
@@ -277,19 +261,19 @@ export default function Home() {
               Start free. Scale when you&apos;re ready.
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {pricingPlans.map((plan) => (
               <div
                 key={plan.name}
                 className={`rounded-2xl p-8 ${
                   plan.featured
-                    ? 'bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-xl shadow-indigo-200 scale-105 relative'
+                    ? 'bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-xl shadow-indigo-200 relative'
                     : 'bg-white border border-gray-200 hover:border-indigo-200 transition-colors'
                 }`}
               >
                 {plan.featured && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full">
-                    POPULAR
+                    MOST POPULAR
                   </div>
                 )}
                 <h3 className={`text-lg font-bold mb-1 ${plan.featured ? 'text-white' : 'text-gray-900'}`}>
@@ -317,7 +301,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <Link
-                  href="/login"
+                  href={plan.href}
                   className={`block text-center py-3 rounded-xl text-sm font-semibold transition-all ${
                     plan.featured
                       ? 'bg-white text-indigo-600 hover:bg-gray-50'
@@ -326,6 +310,9 @@ export default function Home() {
                 >
                   {plan.cta}
                 </Link>
+                {plan.featured && (
+                  <p className="mt-2 text-center text-xs text-indigo-300">Pay with USDC on Base</p>
+                )}
               </div>
             ))}
           </div>
