@@ -1,14 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-// Central Supabase (CronSafe's instance) for payment events
-const centralSupabase = createClient(
-  process.env.CENTRAL_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.CENTRAL_SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: { autoRefreshToken: false, persistSession: false },
+// Lazy-init Central Supabase (avoids build-time crash when env vars aren't set)
+let _centralSupabase: SupabaseClient | null = null;
+function getCentralSupabase() {
+  if (!_centralSupabase) {
+    const url = process.env.CENTRAL_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const key = process.env.CENTRAL_SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!url || !key) {
+      throw new Error('Supabase env vars not configured');
+    }
+    _centralSupabase = createClient(url, key, {
+      auth: { autoRefreshToken: false, persistSession: false },
+    });
   }
-);
+  return _centralSupabase;
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,7 +30,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Insert into payment_events table on central Supabase
-    const { data, error } = await centralSupabase
+    const { data, error } = await getCentralSupabase()
       .from('payment_events')
       .insert({
         product: 'waitlistq',
