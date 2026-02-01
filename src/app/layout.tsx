@@ -5,7 +5,7 @@ import { WebsiteJsonLd } from "@/components/JsonLd";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://waitlistq.deependventures.com"),
+  metadataBase: new URL("https://waitlistq.deependventures.com"),
   title: "WaitlistQ — Viral Waitlists with Referral Tracking",
   description:
     "Create embeddable waitlists with built-in referral tracking. Users share to move up the list. Free to start.",
