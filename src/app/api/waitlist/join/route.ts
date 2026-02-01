@@ -1,9 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
 import { generateReferralCode, getReferralUrl } from '@/lib/utils';
+import { rateLimit, getClientIp } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit: 10 requests per IP per minute to prevent waitlist stuffing
+    const ip = getClientIp(request);
+    const rl = rateLimit(`join:${ip}`, { limit: 10, windowSeconds: 60 });
+    if (!rl.success) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again later.' },
+        { status: 429, headers: { 'Retry-After': String(Math.ceil((rl.reset - Date.now()) / 1000)) } }
+      );
+    }
+
     const { email, name, waitlistId, referralCode } = await request.json();
 
     if (!email || !waitlistId) {
@@ -116,19 +127,9 @@ export async function POST(request: NextRequest) {
       // Increment referral count
       await supabase.rpc('increment_referral_count', { sub_id: referrerId });
 
-      // Bump referrer's priority
+      // Bump referrer's priority atomically (prevents race condition)
       const bonus = waitlist.referral_bonus || 1;
-      await supabase
-        .from('subscribers')
-        .update({ 
-          priority_score: (await supabase
-            .from('subscribers')
-            .select('priority_score')
-            .eq('id', referrerId)
-            .single()
-          ).data?.priority_score + bonus
-        })
-        .eq('id', referrerId);
+      await supabase.rpc('add_priority_score', { sub_id: referrerId, bonus });
 
       // Log referral event
       await supabase.from('referral_events').insert({

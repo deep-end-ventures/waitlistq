@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { createServerSupabase } from '@/lib/supabase-server';
 
 // Lazy-init Central Supabase (avoids build-time crash when env vars aren't set)
 let _centralSupabase: SupabaseClient | null = null;
@@ -19,12 +20,27 @@ function getCentralSupabase() {
 
 export async function POST(request: NextRequest) {
   try {
+    // Require authentication — only logged-in users can claim payments
+    const supabase = await createServerSupabase();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    if (authError || !user) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
+    }
+
     const body = await request.json();
     const { email, plan, tx_hash, amount, payment_ref } = body;
 
     if (!email || !plan || !amount) {
       return NextResponse.json(
         { error: 'Missing required fields: email, plan, amount' },
+        { status: 400 }
+      );
+    }
+
+    // Require tx_hash — payment must have a blockchain transaction
+    if (!tx_hash) {
+      return NextResponse.json(
+        { error: 'Transaction hash is required to claim a payment' },
         { status: 400 }
       );
     }
@@ -36,12 +52,12 @@ export async function POST(request: NextRequest) {
         product: 'waitlistq',
         email,
         plan,
-        tx_hash: tx_hash || null,
+        tx_hash,
         amount,
         currency: 'USDC',
         network: 'base',
         payment_ref: payment_ref || null,
-        status: tx_hash ? 'claimed' : 'pending',
+        status: 'claimed',
         wallet_address: '0xdA904B18a38261B5Ffe78abE5BA744b666e18A44',
         created_at: new Date().toISOString(),
       })

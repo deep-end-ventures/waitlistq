@@ -1,8 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase';
+import { createServerSupabase } from '@/lib/supabase-server';
 
 export async function GET(request: NextRequest) {
   try {
+    // Require authentication
+    const authSupabase = await createServerSupabase();
+    const { data: { user }, error: authError } = await authSupabase.auth.getUser();
+    if (authError || !user) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
+    }
+
     const { searchParams } = new URL(request.url);
     const waitlistId = searchParams.get('waitlistId');
 
@@ -11,6 +19,21 @@ export async function GET(request: NextRequest) {
     }
 
     const supabase = createServiceClient();
+
+    // Verify the authenticated user owns this waitlist
+    const { data: waitlist, error: wlError } = await supabase
+      .from('waitlists')
+      .select('id, owner_id')
+      .eq('id', waitlistId)
+      .single();
+
+    if (wlError || !waitlist) {
+      return NextResponse.json({ error: 'Waitlist not found' }, { status: 404 });
+    }
+
+    if (waitlist.owner_id !== user.id) {
+      return NextResponse.json({ error: 'Forbidden: you do not own this waitlist' }, { status: 403 });
+    }
 
     // Get total subscribers
     const { count: totalSubscribers } = await supabase
@@ -40,10 +63,10 @@ export async function GET(request: NextRequest) {
       .select('*', { count: 'exact', head: true })
       .eq('waitlist_id', waitlistId);
 
-    // Get top referrers
+    // Get top referrers (redact email — show only name and count)
     const { data: topReferrers } = await supabase
       .from('subscribers')
-      .select('id, email, name, referral_count')
+      .select('id, name, referral_count')
       .eq('waitlist_id', waitlistId)
       .gt('referral_count', 0)
       .order('referral_count', { ascending: false })

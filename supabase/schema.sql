@@ -187,6 +187,18 @@ CREATE POLICY "System can insert digest log" ON digest_log FOR INSERT WITH CHECK
 -- FUNCTIONS
 -- ============================================
 
+-- Function to atomically increment a subscriber's referral count
+CREATE OR REPLACE FUNCTION increment_referral_count(sub_id UUID)
+RETURNS void AS $$
+  UPDATE subscribers SET referral_count = referral_count + 1 WHERE id = sub_id;
+$$ LANGUAGE SQL;
+
+-- Function to atomically add to a subscriber's priority score
+CREATE OR REPLACE FUNCTION add_priority_score(sub_id UUID, bonus INTEGER)
+RETURNS void AS $$
+  UPDATE subscribers SET priority_score = priority_score + bonus WHERE id = sub_id;
+$$ LANGUAGE SQL;
+
 -- Function to get next position for a waitlist
 CREATE OR REPLACE FUNCTION get_next_position(wl_id UUID)
 RETURNS INTEGER AS $$

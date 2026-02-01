@@ -52,4 +52,32 @@ export function generatePaymentRef(): string {
   return `WQ-${Date.now()}-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
 }
 
+/**
+ * Server-side subscription verification.
+ * Checks the payment_events table for a valid, claimed payment for this email.
+ * Use this on the server to enforce Pro features — never trust localStorage alone.
+ */
+export async function verifySubscriptionServer(email: string): Promise<boolean> {
+  const { createClient } = await import('@supabase/supabase-js');
+  const supabaseUrl = process.env.CENTRAL_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceKey = process.env.CENTRAL_SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!supabaseUrl || !serviceKey) return false;
+
+  const supabase = createClient(supabaseUrl, serviceKey, {
+    auth: { autoRefreshToken: false, persistSession: false },
+  });
+
+  const { data, error } = await supabase
+    .from('payment_events')
+    .select('id')
+    .eq('product', 'waitlistq')
+    .eq('email', email)
+    .eq('status', 'claimed')
+    .limit(1)
+    .single();
+
+  if (error || !data) return false;
+  return true;
+}
+
 export { WALLET_ADDRESS, PRO_PRICE };
