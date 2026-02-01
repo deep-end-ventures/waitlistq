@@ -3,7 +3,7 @@ import { getAllSlugs } from "@/content/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl =
-    process.env.NEXT_PUBLIC_APP_URL || "https://waitlistq.vercel.app";
+    process.env.NEXT_PUBLIC_APP_URL || "https://waitlistq.deependventures.com";
 
   const blogSlugs = getAllSlugs();
 

@@ -1,7 +1,7 @@
 import { blogPosts } from "@/content/blog";
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://waitlistq.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://waitlistq.deependventures.com";
 
   const items = blogPosts
     .map(

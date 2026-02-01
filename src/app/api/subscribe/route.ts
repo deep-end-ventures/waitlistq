@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
             <li>New WaitlistQ features & product updates</li>
           </ul>
           <p style="color: #27272a; font-size: 16px; line-height: 1.6;">
-            Ready to launch? <a href="https://waitlistq.vercel.app" style="color: #4f46e5; text-decoration: none; font-weight: 600;">Create your waitlist for free</a> — takes 30 seconds.
+            Ready to launch? <a href="https://waitlistq.deependventures.com" style="color: #4f46e5; text-decoration: none; font-weight: 600;">Create your waitlist for free</a> — takes 30 seconds.
           </p>
           <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid #e4e4e7;">
             <p style="color: #a1a1aa; font-size: 13px;">

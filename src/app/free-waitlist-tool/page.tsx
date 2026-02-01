@@ -25,7 +25,7 @@ const faqs = [
   },
   {
     question: 'How do I add a waitlist to my website?',
-    answer: 'WaitlistQ gives you an embeddable widget — a small code snippet you paste into your HTML. It creates a beautiful signup form that matches your site. You also get a hosted public waitlist page at waitlistq.vercel.app/w/your-slug that you can share anywhere.',
+    answer: 'WaitlistQ gives you an embeddable widget — a small code snippet you paste into your HTML. It creates a beautiful signup form that matches your site. You also get a hosted public waitlist page at waitlistq.deependventures.com/w/your-slug that you can share anywhere.',
   },
   {
     question: 'Does the free waitlist tool include referral tracking?',

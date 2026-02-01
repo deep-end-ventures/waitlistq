@@ -169,7 +169,7 @@ export default function PreLaunchLandingPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Use the Hosted Page</h3>
               <p className="text-sm text-gray-600 mb-6">
-                WaitlistQ gives you a beautiful public page at <code className="text-xs bg-gray-100 px-1.5 py-0.5 rounded">waitlistq.vercel.app/w/your-slug</code>.
+                WaitlistQ gives you a beautiful public page at <code className="text-xs bg-gray-100 px-1.5 py-0.5 rounded">waitlistq.deependventures.com/w/your-slug</code>.
                 Share this URL directly — no website needed.
               </p>
               <ul className="space-y-2 text-sm text-gray-600">
